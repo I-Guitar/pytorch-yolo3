@@ -1,9 +1,8 @@
 import sys
-import time
-from PIL import Image, ImageDraw
-from models.tiny_yolo import TinyYoloNet
-from utils import *
+
 from darknet import Darknet
+from utils import *
+
 
 def detect(cfgfile, weightfile, imgfile):
     m = Darknet(cfgfile)
@@ -32,10 +31,11 @@ def detect(cfgfile, weightfile, imgfile):
         boxes = do_detect(m, sized, 0.5, 0.4, use_cuda)
         finish = time.time()
         if i == 1:
-            print('%s: Predicted in %f seconds.' % (imgfile, (finish-start)))
+            print('%s: Predicted in %f seconds.' % (imgfile, (finish - start)))
 
     class_names = load_class_names(namesfile)
-    plot_boxes(img, boxes, 'predictions.jpg', class_names)
+    plot_boxes(img, boxes, 'data/result/predictions.jpg', class_names)
+
 
 def detect_cv2(cfgfile, weightfile, imgfile):
     import cv2
@@ -65,10 +65,11 @@ def detect_cv2(cfgfile, weightfile, imgfile):
         boxes = do_detect(m, sized, 0.5, 0.4, use_cuda)
         finish = time.time()
         if i == 1:
-            print('%s: Predicted in %f seconds.' % (imgfile, (finish-start)))
+            print('%s: Predicted in %f seconds.' % (imgfile, (finish - start)))
 
     class_names = load_class_names(namesfile)
     plot_boxes_cv2(img, boxes, savename='predictions.jpg', class_names=class_names)
+
 
 def detect_skimage(cfgfile, weightfile, imgfile):
     from skimage import io
@@ -98,24 +99,22 @@ def detect_skimage(cfgfile, weightfile, imgfile):
         boxes = do_detect(m, sized, 0.5, 0.4, use_cuda)
         finish = time.time()
         if i == 1:
-            print('%s: Predicted in %f seconds.' % (imgfile, (finish-start)))
+            print('%s: Predicted in %f seconds.' % (imgfile, (finish - start)))
 
     class_names = load_class_names(namesfile)
     plot_boxes_cv2(img, boxes, savename='predictions.jpg', class_names=class_names)
 
 
-
-
 if __name__ == '__main__':
-    sys.argv = ['detect.py', 'cfg/yolov3.cfg', 'yolov3.weights', 'data/dog.jpg']
+    sys.argv = ['detect.py', 'cfg/yolov3.cfg', 'yolov3.weights', '/home/joe/Downloads/381924.jpg']
     if len(sys.argv) == 4:
         cfgfile = sys.argv[1]
         weightfile = sys.argv[2]
         imgfile = sys.argv[3]
         detect(cfgfile, weightfile, imgfile)
-        #detect_cv2(cfgfile, weightfile, imgfile)
-        #detect_skimage(cfgfile, weightfile, imgfile)
+        # detect_cv2(cfgfile, weightfile, imgfile)
+        # detect_skimage(cfgfile, weightfile, imgfile)
     else:
         print('Usage: ')
         print('  python detect.py cfgfile weightfile imgfile')
-        #detect('cfg/tiny-yolo-voc.cfg', 'tiny-yolo-voc.weights', 'data/person.jpg', version=1)
+        # detect('cfg/tiny-yolo-voc.cfg', 'tiny-yolo-voc.weights', 'data/person.jpg', version=1)

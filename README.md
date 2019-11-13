@@ -1,4 +1,23 @@
+> fork 自 [marvis/pytorch-yolo3](https://github.com/marvis/pytorch-yolo3) 并修复了一些在个人机器中出现的问题，参考如下。
+
+* 已测试环境
+
+  * Ubuntu 18.0.4
+    * Python3.7
+  * Windows10
+
+* 需要注意的点
+
+  * python3环境下使用，需要将代码切换到python3分支
+
+  * yolov3.weights文件可能下载过慢，移步[个人保存](http://owncloud.hujinwen.com/s/HpvcQSXKjN2UBVo)
+
+    
+
+
+
 ### pytorch-yolo3
+
 Convert https://pjreddie.com/darknet/yolo/ into pytorch. Currently this repository works on Python 3.6.1  + pytorch 0.3.1.post3
 
 This python3 version is merged from https://github.com/Swall0w/pytorch-yolo3
