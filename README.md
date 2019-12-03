@@ -12,6 +12,7 @@
 
   * yolov3.weights文件可能下载过慢，移步[个人保存](http://owncloud.hujinwen.com/s/HpvcQSXKjN2UBVo)
 
+* 测试直接执行 `detect.py` ，注意main方法上方的参数
     
 
 
